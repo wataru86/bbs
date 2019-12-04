@@ -1,0 +1,18 @@
+<h1>スレッド一覧</h1>
+<hr><hr>
+<% @topics.each do |topic| %>
+<h2><%= link_to topic.title, topics_show_path(topic.id) %></h2>
+<%= link_to '[削除]', topic_delete_path(topic.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+<%= link_to '[変更]', topics_edit_path(topic.id), method: :edit %>
+<hr>
+<% end %>
+
+
+<h2>スレッド作成</h2>
+
+<%= form_for @newTopic, :url => {:action => 'create'} do |f| %>
+スレッドタイトル <br>
+<%= f.text_field :title %>
+</br></br>
+<%= f.submit "作成" %>
+<% end %>

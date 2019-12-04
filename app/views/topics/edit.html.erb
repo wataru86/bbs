@@ -1,0 +1,8 @@
+<h1>スレッドタイトルの変更</h1>
+
+<%= form_for(@topic, url: topics_editTitle_path(@topic.id)) do |f| %>
+変更後のスレッドタイトル <br>
+<%= f.text_field :title %>
+</br></br>
+<%= f.submit "変更" %>
+<% end %>
