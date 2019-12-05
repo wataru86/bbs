@@ -1,8 +1,12 @@
-<h1><%= @topic.title %></h1>
+<h1><%= @topic.title %></h1><hr>
 <% @posts.each_with_index do |post , idx| %>
-  <p>
-    <%= idx + 1 %>. <%= post.name %> : <%= post.body %> <%= link_to '[削除]', post_delete_path(post.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
-  </p>
+<p>
+  <%= tag.a(id: post.id) %>
+  <%= idx + 1 %>.<%= post.name %> (id:<%= post.id %>)
+  <%= link_to '[返信]', post_reply_path(post.id), method: :reply %>
+  <%= link_to '[削除]', post_delete_path(post.id), method: :delete, data: {confirm: "削除してもよろしいですか？"} %>
+  <br><br><%= raw post.body %><hr>
+</p>
 <% end %>
 
 <br>
@@ -10,12 +14,12 @@
 <h3>新規書き込み</h3>
 <%= form_for @newpost, :url => post_create_path do |f| %>
   <p>名前：</p>
-  <p><%= f.text_field :name %></p>
+  <p><%= f.text_field :name, value: '名無しさん' %></p>
   <p>本文：</p>
-  <p><%= f.text_area :body %></p>
+  <p><%= f.text_area :body, value: @body %></p>
   <%= f.hidden_field :topic_id %>
   <%= f.submit "発言" %>
 <% end %>
 
-<br>
+<br><br>
 <%= link_to "スレッド一覧に戻る", topics_index_path %>

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   patch 'topics/editTitle/:id' => 'topics#editTitle', as: :topics_editTitle
 
   post 'posts/create' => 'post#create', as: :post_create
+  post 'topics/reply/:id' => 'topics#reply', as: :post_reply
   delete 'posts/delete/:id' => 'post#delete', as: :post_delete
 end
