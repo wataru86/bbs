@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'topics#index'
   get 'topics/index'
   get 'topics/show/:id' => 'topics#show', as: :topics_show
   post 'topics/create' => 'topics#create'
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   patch 'topics/editTitle/:id' => 'topics#editTitle', as: :topics_editTitle
 
   post 'posts/create' => 'post#create', as: :post_create
+  delete 'posts/delete/:id' => 'post#delete', as: :post_delete
 end

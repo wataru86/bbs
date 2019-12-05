@@ -5,4 +5,11 @@ class PostController < ApplicationController
     @post.save
     redirect_to topics_show_path(params[:post]['topic_id'])
   end
+
+  def delete
+    @post = Post.find(params[:id])
+    @topicId = @post.topic_id
+    @post.destroy
+    redirect_to topics_show_path(@topicId)
+  end
 end
